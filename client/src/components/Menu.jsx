@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import TRUNK from 'vanta/dist/vanta.trunk.min'
 import * as THREE from 'three'
 import * as p5 from 'p5'
+import Button from './Button'
 
 export default function Menu() {
     const [vantaEffect, setVantaEffect] = useState(0)
@@ -13,7 +14,7 @@ export default function Menu() {
                 el: backgroundRef.current,
                 p5: p5,
                 THREE: THREE,
-                color: "#d42457", 
+                color: "#37FF8B", 
                 mouseControls: true,
                 touchControls: true,
                 gyroControls: false,
@@ -21,7 +22,6 @@ export default function Menu() {
                 minWidth: 400.00,
                 scale: 1.00,
                 scaleMobile: 1.00, 
-                xOffset: -0.27
             }))
         }
         return () => {
@@ -30,7 +30,11 @@ export default function Menu() {
     }, [vantaEffect]) 
 
     return (
-        <div className='menu-background'ref={backgroundRef} />  
+        <div className='menu-background' >
+            <div className="menu-aside" ref={backgroundRef}/>
+            <Button buttonAction="Start" text="START" buttonClass="start-btn"/>
+            <Button buttonAction="Leaderboard" text="LEADERBOARD" buttonClass="board-btn"/>
+        </div>   
         
     )
 }
