@@ -30,9 +30,13 @@ export default function Timer(props) {
             <h1>
                 FlowRate
             </h1>
-            <span>
-                {seconds}
-            </span> 
+
+            {props.isActive &&
+                <span>
+                    {seconds}
+                </span> 
+            }
+
         </div>
     )
 }
