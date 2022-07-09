@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 
 import firebase_admin
+import itertools
 from firebase_admin import credentials
 from firebase_admin import firestore
 
@@ -19,6 +20,12 @@ def diff(id):
     data = {"words": ["pain", "hate"]}
     db.collection("difficulty").document(" ultra hard").set(data)
     return id
+
+@app.route('/<id>/score', methods = ['GET', 'POST'])
+def score(id):
+    resultSnap = db.collection('user').document(id).get()
+    result = resultSnap.to_dict()
+    return result
 
 if __name__ == "__main__":
     app.run(debug=True)
