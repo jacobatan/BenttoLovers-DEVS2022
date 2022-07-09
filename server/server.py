@@ -16,7 +16,7 @@ def index():
     return "Hello World!"
 
 
-@app.route('/<difficulty>')
+@app.route('/<difficulty>', methods=['GET'])
 def diff(difficulty):
     result = db.collection("difficulty").document(difficulty).get()
     return result.to_dict()
