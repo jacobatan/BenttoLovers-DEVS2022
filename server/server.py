@@ -10,15 +10,17 @@ db = firestore.client()
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     return "Hello World!"
 
-@app.route('/difficulty/<id>')
-def diff(id):
-    data = {"words": ["pain", "hate"]}
-    db.collection("difficulty").document(" ultra hard").set(data)
-    return id
+
+@app.route('/<difficulty>')
+def diff(difficulty):
+    result = db.collection("difficulty").document(difficulty).get()
+    return result.to_dict()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
