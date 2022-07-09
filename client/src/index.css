@@ -114,7 +114,51 @@ button {
   width: 100%;
 }
 
+.btns-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25%;
+}
 
+.btns-wrapper Button {
+    margin: 6px;
+}
+
+.team-name {
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--p-color);
+
+    //box-shadow: inset 0 0 0.5em 0 var(--p-color), 0 0 0.5em 0 var(--p-color);
+}
+
+.team-name::before {
+    pointer-events: none;
+    content: "";
+    background: var(--p-color);
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+    filter: blur(1em);
+    opacity: 0.7;
+}
+
+.team-name::after {
+    content: "";
+    box-shadow: 0 0 2em 0.5em var(--p-color);
+    opacity: 0;
+    background-color: var(--p-color);
+    z-index: -1;
+    transition: opacity 100ms linear;
+}
+
+.team-name:hover,
+.team-name:focus {
+    color: var(--p-color);
+    text-shadow: none;
+}
 
 .timer-wrapper{
   grid-area: timer;
@@ -167,27 +211,6 @@ button {
     font-size: 4rem;
     color: var(--p-color);
     text-shadow: 0 0 0.10em hsl(0 0% 100% / 0.3), 0 0 0.2em currentColor;
-    animation: backOutUp 4s;
-}
-@keyframes backOutUp {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    20% {
-        transform: translateY(0px) scale(0.7);
-        opacity: 0.7;
-    }
-
-    100% {
-        transform: translateY(-700px) scale(0.7);
-        opacity: 0.7;
-    }
-}
-
-.backOutUp {
-    animation-name: backOutUp;
 }
 
 .words {
@@ -294,7 +317,6 @@ button {
   
 }
 
-
 .modal-btn{
   font-size: 2rem;
   cursor: pointer;
@@ -331,16 +353,13 @@ button {
 }
 
 
-.modal-container button::hover{
+.modal-container button:hover{
       cursor: pointer;
 }
 
 .modal-container .rules {
         margin: 3rem 0;
 }
-
-
-
 
 @keyframes pulse {
   from {

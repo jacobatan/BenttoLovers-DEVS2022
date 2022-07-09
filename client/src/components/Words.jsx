@@ -11,13 +11,11 @@ export default function Words(props) {
             </div>
         )
     })
-    
+
     return(
-        <div className="words-wrapper">
-            <div className="words">
-                {renderWords}
-            </div>
+        <div className="words-wrapper-list">
+            <button className="words-heading">Your 4 Words Are:</button>
+            {renderWords}
         </div>
-        
     )
 }
