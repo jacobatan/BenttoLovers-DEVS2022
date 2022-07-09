@@ -88,13 +88,12 @@ button {
 
 .start-btn{
   grid-area: start;
-  align-self: center;
 }
 
 .board-btn{
   grid-area: leaderboard;
   align-self: flex-start;
-  margin-top: -0.75em;
+  margin-top: -1em;
 }
 
 .timer-wrapper{
@@ -131,19 +130,198 @@ button {
   margin: 0;
   padding: 0;
   grid-area: aside;
-  border: 2px solid red;
   width: 80%;
   margin: auto;
 }
 
-.word{
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: var(--p-font);
-  color: var(--p-color);
-  padding: 0.5em;
-  text-transform: uppercase;
+.words-wrapper,
+.words-wrapper:before,
+.words-wrapper:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--p-font);
+    font-size: 3rem;
+    font-weight: 400;
 }
 
+.words-wrapper{
+    box-sizing: content-box;
+    background-color: #232426;
+    margin: auto;
+    height: 70px;
+    padding: 50px 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 20px 25px rgba(0,0,0,0.2);
+    color: white;
+}
+.words{
+    overflow: hidden;
+}
+.wordsRap{
+  text-align: center;
+  display: block;
+  height: 100%;
+  padding-left: 10px;
+  color: #54f08c;
+  text-transform: uppercase;
+  animation: spin_words 6s infinite;
+}
+@keyframes spin_words{
+    10%{
+        transform: translateY(-112%);
+    }
+    25%{
+        transform: translateY(-100%);
+    }
+    35%{
+        transform: translateY(-212%);
+    }
+    50%{
+        transform: translateY(-200%);
+    }
+    60%{
+        transform: translateY(-312%);
+    }
+    75%{
+        transform: translateY(-300%);
+    }
+    85%{
+        transform: translateY(-412%);
+    }
+    100%{
+        transform: translateY(-400%);
+    }
+}
+
+
+/* ===================
+      footer 
+========================*/
+
+.footer {
+  width: 100vw;
+}
+
+.footer button{
+  position: absolute;
+  bottom: 1rem;
+  padding: 7px 25px;
+  right: 1rem;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px #59d5e6;
+  border: 3px solid #54f08c;
+  color: var(--p-color);
+  background: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+}
+
+.neon-button {
+    font-size: 4rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+}
+
+.neon-button::before {
+    pointer-events: none;
+    content: "";
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+     filter: blur(0.5em); 
+    opacity: 0.5;
+}
+
+.neon-button::after {
+    content: "";
+    box-shadow: 0 0 1em 0.25em var(--p-color);
+    opacity: 0;
+    background-color: #54f08c;
+    z-index: -1;
+    transition: opacity 250ms ease-out;
+}
+
+.neon-button:hover,
+.neon-button:focus {
+    color: white;
+    background-color: #54f08c;
+    box-shadow: 0 0 0.25em #59d5e6;
+    text-shadow: none;
+}
+
+.neon-button:hover::before,
+.neon-button:focus::before {
+    opacity: 1;
+}
+.neon-button:hover::after,
+.neon-button:focus::after {
+    opacity: 1;
+}
+
+.modal-container{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-box{
+  color: var(--p-color);
+  background-color: #232426;
+  border: 3px solid rgba(25, 223, 147, 0.7);
+  border-radius: 8px;
+  padding: 30px;
+  
+}
+
+.modal-btn{
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-btn p{
+  margin: 0;
+  color: rgb(252, 195, 38);
+}
+
+.modal__header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+
+.modal-container h1{
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+}
+
+.modal-container button {
+  background:none ;
+  border: none;
+  align-self: center;
+  color: hsl(229, 25%, 31%);
+}
+
+.modal-container button::hover{
+      cursor: pointer;
+}
+
+.modal-container .rules {
+        margin: 3rem 0;
+}
 
 

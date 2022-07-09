@@ -10,7 +10,7 @@ export default function Menu() {
     const [vantaEffect, setVantaEffect] = useState(0)
     const backgroundRef = useRef(null);
     const[isActive, setIsActive] = useState(false);
-    const words = ["Octagon ","Papa John", "Walk along", "drop"];
+    const words = ["Octagon ","Papa John", "Walk along", "drop", "PEEDHA"];
     
     function startGame() {
         setIsActive(!isActive);
@@ -49,7 +49,7 @@ export default function Menu() {
             }
             
             <Button buttonAction="Start" text={`${isActive ? "PAUSE" : "START"}`} buttonClass="start-btn" function={startGame}/>
-            <Button buttonAction="Leaderboard" text="LEADERBOARD" buttonClass="board-btn"/>     
+            <Button buttonAction="History" text={`${isActive?"RECORDING" : "HISTORY"}`} buttonClass={`${isActive ? "record-btn board-btn" : "board-btn"}`}/>     
         </div>   
         
     )

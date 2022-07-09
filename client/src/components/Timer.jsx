@@ -14,6 +14,7 @@ export default function Timer(props) {
                 }
                 if(seconds === 0) {
                     clearInterval(interval);
+                    
                 }
             }, 1000);
         } else if (!props.isActive && seconds !== 0) {
