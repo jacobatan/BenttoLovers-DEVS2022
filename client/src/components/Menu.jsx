@@ -3,17 +3,39 @@ import TRUNK from 'vanta/dist/vanta.trunk.min'
 import * as THREE from 'three'
 import * as p5 from 'p5'
 import Button from './Button'
+import Button2 from './Button2'
 import Timer from './Timer'
 import Words from './Words'
+import Modal from './Modal'
 
 export default function Menu() {
     const [vantaEffect, setVantaEffect] = useState(0)
     const backgroundRef = useRef(null);
-    const[isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
     const words = ["Octagon ","Papa John", "Walk along", "drop", "PEEDHA"];
+    const [modal, setModal] = useState(false);
+    const [whichDifficuilty, setwhichDifficuilty] = useState(null);
+    const difficulty = ["EASY", "Medium", "Hard"]
+
+    const handleDifficuilty = (event) => {
+        event.preventDefault();
+        setwhichDifficuilty(event.target.innerText);
+        startGame();
+    }
+
+    const renderDifficuilty = difficulty.map((dif, i) => {
+        return(
+            <Button2 id={dif} value ={dif} name={dif} buttonAction={dif} key={i} text={dif} buttonClass="" function={handleDifficuilty}/>
+        )
+    }); 
+
+    const toggle = () => {
+        setModal(!modal);
+    };
     
     function startGame() {
         setIsActive(!isActive);
+        setModal(!modal);
     }
 
     useEffect(() => {
@@ -40,7 +62,8 @@ export default function Menu() {
     return (
         <div className='menu-background' >
 
-        <Timer timer={3} isActive={startGame}/>
+        
+        <Timer timer={3} isActive={isActive}/>
             {isActive ? 
                 <Words words={words}/>:
                 <div className="menu-aside" > 
@@ -48,8 +71,16 @@ export default function Menu() {
                 </div> 
             }
             
-            <Button buttonAction="Start" text={`${isActive ? "PAUSE" : "START"}`} buttonClass="start-btn" function={startGame}/>
+            <Button buttonAction="Start" text={`${isActive ? "PAUSE" : "START"}`} buttonClass="start-btn" function={toggle}/>
             <Button buttonAction="History" text={`${isActive?"RECORDING" : "HISTORY"}`} buttonClass={`${isActive ? "record-btn board-btn" : "board-btn"}`}/>     
+
+        {modal && 
+            <Modal 
+                toggle={toggle}
+                heading="Choose Difficulty"
+                content = {renderDifficuilty}
+            />    
+        }
         </div>   
         
     )

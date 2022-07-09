@@ -4,10 +4,14 @@ export default function Words(props) {
 
     const renderWords = props.words.map((word, i) => {
         return (
-            <span className="wordsRap" key={i}>{word}</span>
+            <div key={i}>
+                <button className="words-text">
+                    {word}
+                </button>
+            </div>
         )
     })
-
+    
     return(
         <div className="words-wrapper">
             <div className="words">

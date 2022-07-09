@@ -13,8 +13,7 @@ export default function Timer(props) {
                     setSeconds(seconds => seconds - 1);
                 }
                 if(seconds === 0) {
-                    clearInterval(interval);
-                    
+                    clearInterval(interval);     
                 }
             }, 1000);
         } else if (!props.isActive && seconds !== 0) {
@@ -29,7 +28,7 @@ export default function Timer(props) {
     return (
         <div className="timer-wrapper">
             <h1>
-                BenttoLovers 
+                FlowRate
             </h1>
             <span>
                 {seconds}

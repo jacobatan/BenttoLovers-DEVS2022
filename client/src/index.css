@@ -60,6 +60,34 @@ button {
   filter: drop-shadow(0 0 23px var(--p-color))
 }
 
+.start-btn{
+  grid-area: start;
+}
+
+.board-btn{
+  grid-area: leaderboard;
+  align-self: flex-start;
+  margin-top: -1em;
+}
+
+.record-btn{
+  border: none;
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-iteration-count: 4;
+  filter: drop-shadow(0 0 23px var(--p-color))
+}
+
+.record-btn .hover-text{
+  border: none;
+  animation: widthChange;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-iteration-count: 4;
+}
 .menu-background{
   background-color: var(--bg-color);
   min-height: 100vh;
@@ -86,15 +114,7 @@ button {
   width: 100%;
 }
 
-.start-btn{
-  grid-area: start;
-}
 
-.board-btn{
-  grid-area: leaderboard;
-  align-self: flex-start;
-  margin-top: -1em;
-}
 
 .timer-wrapper{
   grid-area: timer;
@@ -126,75 +146,63 @@ button {
   color: var(--bg-color);
 }
 
-.words-wrapper{
-  margin: 0;
-  padding: 0;
-  grid-area: aside;
-  width: 80%;
-  margin: auto;
-}
-
-.words-wrapper,
-.words-wrapper:before,
-.words-wrapper:after{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: var(--p-font);
-    font-size: 3rem;
-    font-weight: 400;
-}
-
-.words-wrapper{
-    box-sizing: content-box;
-    background-color: #232426;
-    margin: auto;
-    height: 70px;
-    padding: 50px 30px;
+.words-wrapper {
+  /* grid-area: aside; */
     display: flex;
-    justify-content: center;
-    border-radius: 8px;
-    box-shadow: 0 20px 25px rgba(0,0,0,0.2);
-    color: white;
+    flex-direction: column;
 }
-.words{
+.words-wrapper-list {
+    text-align: center;
+    padding: 0;
+    grid-area: aside;
+    width: 60%;
+    height: 70%;
+    border-radius: 10px;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.words-heading {
+    font-size: 4rem;
+    color: var(--p-color);
+    text-shadow: 0 0 0.10em hsl(0 0% 100% / 0.3), 0 0 0.2em currentColor;
+    animation: backOutUp 4s;
+}
+@keyframes backOutUp {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    20% {
+        transform: translateY(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-700px) scale(0.7);
+        opacity: 0.7;
+    }
+}
+
+.backOutUp {
+    animation-name: backOutUp;
+}
+
+.words {
     overflow: hidden;
 }
-.wordsRap{
-  text-align: center;
-  display: block;
-  height: 100%;
-  padding-left: 10px;
-  color: #54f08c;
-  text-transform: uppercase;
-  animation: spin_words 6s infinite;
+
+.words-text {
+    font-size: 4rem;
+    margin: 5px 0;
+    text-decoration: none;
+    color: white;
+    padding: 0.25em 1em;
+    border-radius: 2rem;
 }
-@keyframes spin_words{
-    10%{
-        transform: translateY(-112%);
-    }
-    25%{
-        transform: translateY(-100%);
-    }
-    35%{
-        transform: translateY(-212%);
-    }
-    50%{
-        transform: translateY(-200%);
-    }
-    60%{
-        transform: translateY(-312%);
-    }
-    75%{
-        transform: translateY(-300%);
-    }
-    85%{
-        transform: translateY(-412%);
-    }
-    100%{
-        transform: translateY(-400%);
-    }
-}
+
 
 
 /* ===================
@@ -286,6 +294,7 @@ button {
   
 }
 
+
 .modal-btn{
   font-size: 2rem;
   cursor: pointer;
@@ -293,7 +302,7 @@ button {
 
 .modal-btn p{
   margin: 0;
-  color: rgb(252, 195, 38);
+  color: var(--p-color);
 }
 
 .modal__header{
@@ -305,8 +314,9 @@ button {
 
 .modal-container h1{
     text-transform: uppercase;
+    font-weight: 200;
     margin: 0;
-    padding: 0;
+    padding: 0 1em;
 }
 
 .modal-container button {
@@ -315,6 +325,11 @@ button {
   align-self: center;
   color: hsl(229, 25%, 31%);
 }
+
+.modal-container .hover-text{
+  border: none;
+}
+
 
 .modal-container button::hover{
       cursor: pointer;
@@ -325,3 +340,32 @@ button {
 }
 
 
+
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes widthChange {
+  from{
+    width: 0%;
+  }
+
+  50%{
+    width: 100%;
+  }
+
+  to{
+    width: 0%;
+  }
+}
