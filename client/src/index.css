@@ -15,6 +15,7 @@
 body{
   padding: 0;
   margin: 0;
+  font-family: var(--p-font);
 }
 
 button {
@@ -64,11 +65,11 @@ button {
   min-height: 100vh;
   display: grid;
   grid-template-areas: 
-    ". ."
+    "aside timer"
     "aside name"
     "aside start"
     "aside leaderboard"
-    ". .";
+    "aside .";
   grid-template-columns: 1.5fr 1fr;
   padding: 1em;
   justify-items: start;
@@ -78,6 +79,10 @@ button {
 .menu-aside{
   grid-area: aside;
   display: flex;
+  width: 100%;  
+}
+.vanta{
+  z-index: 10;
   width: 100%;
 }
 
@@ -92,11 +97,34 @@ button {
   margin-top: -0.75em;
 }
 
-.timer{
-  grid-area: aside;
+.timer-wrapper{
+  grid-area: timer;
   color: #FFF;
-  font-size: 5rem;
-  margin: auto;
+  width: 100%;
+  padding: 1em;
+  height: max-content;
+  align-self: center;
+  border: 2px solid var(--p-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.timer-wrapper h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+}
+
+.timer-wrapper span{
+  background-color: #FFF;
+  border-radius: 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1em;
+  color: var(--bg-color);
 }
 
 .words-wrapper{

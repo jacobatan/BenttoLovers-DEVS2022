@@ -40,10 +40,12 @@ export default function Menu() {
     return (
         <div className='menu-background' >
 
-        {/* <Timer timer={60} isActive={isActive} /> */}
+        <Timer timer={60} />
             {isActive ? 
                 <Words words={words}/>:
-                <div className="menu-aside" ref={backgroundRef}/> 
+                <div className="menu-aside" > 
+                    <div className="vanta" ref={backgroundRef}/>
+                </div> 
             }
             
             <Button buttonAction="Start" text={`${isActive ? "PAUSE" : "START"}`} buttonClass="start-btn" function={startGame}/>

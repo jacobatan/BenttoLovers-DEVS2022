@@ -1,23 +1,12 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState, useRef } from "react";
-import {CountdownCircleTimer} from "react-countdown-circle-timer"
 
 export default function Timer(props) {
 
     const[seconds, setSeconds] = useState(props.timer);
 
-    // const renderTime = ({ remainingTime }) => {
-    //     if (remainingTime === 0) {
-    //         return <div className="timer">Too lale...</div>;
-    //     }
 
-    //     return (
-    //         <div className="timer">
-    //             <div className="text">{seconds}</div>
-    //         </div>
-    //     );
-    // };
 
 
     useEffect(() => {
@@ -32,28 +21,16 @@ export default function Timer(props) {
         return () => clearInterval(interval);
     }, [props.isActive, seconds]);
 
-    // const timerProps = {
-    //     isPlaying: true,
-    //     size: 120,
-    //     strokeWidth: 6
-    // };
+
 
     return (
-        <div className="timer">
-            {/* <CountdownCircleTimer
-                {...timerProps}
-                isPlaying
-                initialRemainingTime={60}
-                duration={60}
-                colors={[["#3f51b5"]]}
-                onComplete={() => console.log("times up")}
-            > */}
-                {/* {({ elapsedTime }) => {
-                //console.log(hourSeconds - elapsedTime / 1000);
-                    return renderTime(seconds);
-                }}
-            </CountdownCircleTimer> */}
-            {seconds}
+        <div className="timer-wrapper">
+            <h1>
+                BenttoLovers 
+            </h1>
+            <span>
+                {seconds}
+            </span> 
         </div>
     )
 }
