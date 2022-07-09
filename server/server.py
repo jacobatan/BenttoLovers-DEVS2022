@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 
 import firebase_admin
+import itertools
 from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import storage
@@ -53,6 +54,12 @@ def upload(id):
     db.collection('user').document(id).update({"videoLinks": videoLinks})
     return result
 
+
+@app.route('/<id>/score', methods = ['GET', 'POST'])
+def score(id):
+    resultSnap = db.collection('user').document(id).get()
+    result = resultSnap.to_dict()
+    return result
 
 if __name__ == "__main__":
     app.run(debug=True)
