@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import * as p5 from 'p5'
 import Button from './Button'
 import Timer from './Timer'
+import Words from './Words'
 
 export default function Menu() {
     const [vantaEffect, setVantaEffect] = useState(0)
@@ -11,7 +12,7 @@ export default function Menu() {
     const[isActive, setIsActive] = useState(false);
     const words = ["Octagon ","Papa John", "Walk along", "drop"];
     
-    function toggleTimer() {
+    function startGame() {
         setIsActive(!isActive);
     }
 
@@ -27,7 +28,7 @@ export default function Menu() {
                 gyroControls: false,
                 minHeight: 375.00,
                 minWidth: 375.00,
-                scale: 1.00,
+                scale: 1,
                 scaleMobile: 1.00, 
             }))
         }
@@ -39,12 +40,13 @@ export default function Menu() {
     return (
         <div className='menu-background' >
 
+        {/* <Timer timer={60} isActive={isActive} /> */}
             {isActive ? 
-                <Timer timer={60} isActive={isActive} /> :
+                <Words words={words}/>:
                 <div className="menu-aside" ref={backgroundRef}/> 
             }
             
-            <Button buttonAction="Start" text="START" buttonClass="start-btn" function={toggleTimer}/>
+            <Button buttonAction="Start" text={`${isActive ? "PAUSE" : "START"}`} buttonClass="start-btn" function={startGame}/>
             <Button buttonAction="Leaderboard" text="LEADERBOARD" buttonClass="board-btn"/>     
         </div>   
         
