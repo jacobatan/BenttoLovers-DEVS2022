@@ -25,8 +25,8 @@ def diff(difficulty):
     return result.to_dict()
 
 
-@app.route('/file/upload')
-def upload():
+@app.route('/file/upload/<id>')
+def upload(id):
     # the name of the file on the site + magic
     fileName = "sample.mp3"
     bucket = storage.bucket()
@@ -41,17 +41,16 @@ def upload():
     blob.upload_from_filename(fileName)
     blob.make_public()
 
+    # link to the mp3 file
     link = "https://firebasestorage.googleapis.com/v0/b/devs-2022.appspot.com/o/{}?alt=media&token={}".format(
         fileName, token)
-    print(link)
-    print(blob.public_url)
-    resultSnap = db.collection('user').document("vWMxQsVn4G5f5UNatjcE").get()
-    result = resultSnap.to_dict()
-    videoLinks = result['videoLinks']
-    videoLinks.append("google.com")
-    db.collection('user').document(
-        "vWMxQsVn4G5f5UNatjcE").update({"videoLinks": videoLinks})
+    # print(blob.public_url)
 
+    # handles updating the users video links
+    result = db.collection('user').document(id).get().to_dict()
+    videoLinks = result['videoLinks']
+    videoLinks.append(link)
+    db.collection('user').document(id).update({"videoLinks": videoLinks})
     return result
 
 
