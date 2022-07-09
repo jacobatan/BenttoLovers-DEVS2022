@@ -3,10 +3,17 @@ import TRUNK from 'vanta/dist/vanta.trunk.min'
 import * as THREE from 'three'
 import * as p5 from 'p5'
 import Button from './Button'
+import Timer from './Timer'
 
 export default function Menu() {
     const [vantaEffect, setVantaEffect] = useState(0)
-    const backgroundRef = useRef(null)
+    const backgroundRef = useRef(null);
+    const[isActive, setIsActive] = useState(false);
+    const words = ["Octagon ","Papa John", "Walk along", "drop"];
+    
+    function toggleTimer() {
+        setIsActive(!isActive);
+    }
 
     useEffect(() => {
         if (!vantaEffect) {
@@ -18,8 +25,8 @@ export default function Menu() {
                 mouseControls: true,
                 touchControls: true,
                 gyroControls: false,
-                minHeight: 400.00,
-                minWidth: 400.00,
+                minHeight: 375.00,
+                minWidth: 375.00,
                 scale: 1.00,
                 scaleMobile: 1.00, 
             }))
@@ -31,9 +38,14 @@ export default function Menu() {
 
     return (
         <div className='menu-background' >
-            <div className="menu-aside" ref={backgroundRef}/>
-            <Button buttonAction="Start" text="START" buttonClass="start-btn"/>
-            <Button buttonAction="Leaderboard" text="LEADERBOARD" buttonClass="board-btn"/>
+
+            {isActive ? 
+                <Timer timer={60} isActive={isActive} /> :
+                <div className="menu-aside" ref={backgroundRef}/> 
+            }
+            
+            <Button buttonAction="Start" text="START" buttonClass="start-btn" function={toggleTimer}/>
+            <Button buttonAction="Leaderboard" text="LEADERBOARD" buttonClass="board-btn"/>     
         </div>   
         
     )
