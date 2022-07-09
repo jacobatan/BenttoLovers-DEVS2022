@@ -4,6 +4,8 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from firebase_admin import storage
+from uuid import uuid4
+
 
 cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred, {'storageBucket': 'devs-2022.appspot.com'})
@@ -25,13 +27,32 @@ def diff(difficulty):
 
 @app.route('/file/upload')
 def upload():
+    # the name of the file on the site + magic
     fileName = "sample.mp3"
     bucket = storage.bucket()
     blob = bucket.blob(fileName)
+
+    # custom token
+    token = uuid4()
+    metadata = {"firebaseStorageDownloadTokens": token}
+    blob.metadata = metadata
+
+    # uploading and making the file public
     blob.upload_from_filename(fileName)
     blob.make_public()
-    blob.download_to_filename(fileName)
-    return "done!"
+
+    link = "https://firebasestorage.googleapis.com/v0/b/devs-2022.appspot.com/o/{}?alt=media&token={}".format(
+        fileName, token)
+    print(link)
+    print(blob.public_url)
+    resultSnap = db.collection('user').document("vWMxQsVn4G5f5UNatjcE").get()
+    result = resultSnap.to_dict()
+    videoLinks = result['videoLinks']
+    videoLinks.append("google.com")
+    db.collection('user').document(
+        "vWMxQsVn4G5f5UNatjcE").update({"videoLinks": videoLinks})
+
+    return result
 
 
 if __name__ == "__main__":
