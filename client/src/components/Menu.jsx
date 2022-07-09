@@ -40,7 +40,7 @@ export default function Menu() {
     return (
         <div className='menu-background' >
 
-        <Timer timer={60} />
+        <Timer timer={3} isActive={startGame}/>
             {isActive ? 
                 <Words words={words}/>:
                 <div className="menu-aside" > 
