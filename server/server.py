@@ -7,9 +7,6 @@ from firebase_admin import firestore
 from firebase_admin import storage
 from uuid import uuid4
 
-
-cred = credentials.Certificate("serviceAccountKey.json")
-firebase_admin.initialize_app(cred, {'storageBucket': 'devs-2022.appspot.com'})
 db = firestore.client()
 
 app = Flask(__name__)
